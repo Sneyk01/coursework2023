@@ -4,10 +4,10 @@
     <Compile Update="debugForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form2.cs">
+    <Compile Update="nameForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Settings.cs">
