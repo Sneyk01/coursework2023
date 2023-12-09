@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+п»їusing System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using myPongGame.Classes;
 
@@ -13,7 +13,7 @@ namespace myPongGame
         {
             InitializeComponent();
             game = new Game(this);
-            this.bestScore.Text = "Лучший счет: " + game.getBestScore();
+            this.bestScore.Text = "Р›СѓС‡С€РёР№ СЃС‡РµС‚: " + game.getBestScore();
         }
 
         private void startGame_Click(object sender, EventArgs e)
@@ -21,7 +21,7 @@ namespace myPongGame
             if (this.mode == 0)
             {
                 mode = 1;
-                // this.bestScore.Text = "Лучший счет: " + game.getBestScore();
+                // this.bestScore.Text = "Р›СѓС‡С€РёР№ СЃС‡РµС‚: " + game.getBestScore();
                 game.startGame();
             }
         }
@@ -74,38 +74,38 @@ namespace myPongGame
 
         private void helpButton_Click(object sender, EventArgs e)
         {
-            String text = "Используйте клавиши W и S для управления платформой.\r\nВаша задача забить как можно больше мячей в ворота соперника. У вас будет пять жизней" +
-                "\r\nЧем сложнее карта и уровень соперника - тем больше очков вы получите.\r\nПродержитесь как можно дольше и попадите в таблицу лучших игроков!" +
+            String text = "РСЃРїРѕР»СЊР·СѓР№С‚Рµ РєР»Р°РІРёС€Рё W Рё S РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РїР»Р°С‚С„РѕСЂРјРѕР№.\r\nР’Р°С€Р° Р·Р°РґР°С‡Р° Р·Р°Р±РёС‚СЊ РєР°Рє РјРѕР¶РЅРѕ Р±РѕР»СЊС€Рµ РјСЏС‡РµР№ РІ РІРѕСЂРѕС‚Р° СЃРѕРїРµСЂРЅРёРєР°. РЈ РІР°СЃ Р±СѓРґРµС‚ РїСЏС‚СЊ Р¶РёР·РЅРµР№" +
+                "\r\nР§РµРј СЃР»РѕР¶РЅРµРµ РєР°СЂС‚Р° Рё СѓСЂРѕРІРµРЅСЊ СЃРѕРїРµСЂРЅРёРєР° - С‚РµРј Р±РѕР»СЊС€Рµ РѕС‡РєРѕРІ РІС‹ РїРѕР»СѓС‡РёС‚Рµ.\r\nРџСЂРѕРґРµСЂР¶РёС‚РµСЃСЊ РєР°Рє РјРѕР¶РЅРѕ РґРѕР»СЊС€Рµ Рё РїРѕРїР°РґРёС‚Рµ РІ С‚Р°Р±Р»РёС†Сѓ Р»СѓС‡С€РёС… РёРіСЂРѕРєРѕРІ!" +
                 "\r\n\r\n";
             MessageBox.Show(text);
         }
 
-        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СЃРїСЂР°РІРєР°ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             helpButton_Click(sender, e);
         }
 
         private void scoreButton_Click(object sender, EventArgs e)
         {
-            this.bestScore.Text = "Лучший счет: " + game.getBestScore();
+            this.bestScore.Text = "Р›СѓС‡С€РёР№ СЃС‡РµС‚: " + game.getBestScore();
             MessageBox.Show(game.showBestPlayers());
         }
 
-        private void рейтингToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СЂРµР№С‚РёРЅРіToolStripMenuItem_Click(object sender, EventArgs e)
         {
             scoreButton_Click(sender, e);
         }
 
-        private void сохранитьБазуДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СЃРѕС…СЂР°РЅРёС‚СЊР‘Р°Р·СѓР”Р°РЅРЅС‹С…ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "Text files(*.txt)|*.txt";
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
-            // получаем выбранный файл
+            // РїРѕР»СѓС‡Р°РµРј РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
             string filename = saveFileDialog1.FileName;
-            // сохраняем текст в файл
+            // СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚ РІ С„Р°Р№Р»
             System.IO.File.WriteAllText(filename, game.showBestPlayers());
-            MessageBox.Show("Файл сохранен");
+            MessageBox.Show("Р¤Р°Р№Р» СЃРѕС…СЂР°РЅРµРЅ");
         }
     }
 }
