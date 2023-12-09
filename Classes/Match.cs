@@ -12,14 +12,14 @@ namespace myPongGame.Classes
 {
     internal class Match
     {
-        protected int             _lastLeaderScore;
-        protected Field           _field;
-        protected System.DateTime _startTime;
-        protected int             _gameStatus;
-        protected Thread          _gameThread; // good?
-        protected int             _mapType;// TODO: use settings 
-        protected Score           _score;
-        protected System.Threading.Timer timer;
+        private int             _lastLeaderScore;
+        private Field           _field;
+        private System.DateTime _startTime;
+        private int             _gameStatus;
+        private Thread          _gameThread; // good?
+        private int             _mapType;// TODO: use settings 
+        private Score           _score;
+        private System.Threading.Timer timer;
 
         public Match() { 
             this._lastLeaderScore = 100; // TODO
