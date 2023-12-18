@@ -13,16 +13,18 @@ namespace myPongGame.Classes
     internal class Match
     {
         private int             _lastLeaderScore;
-        private Field           _field;
+        public Field           _field;
         private System.DateTime _startTime;
         private int             _gameStatus;
-        private Thread          _gameThread; // good?
-        private int             _mapType;// TODO: use settings 
+        private Thread          _gameThread;
+        private int             _mapType;
         private Score           _score;
         private System.Threading.Timer timer;
+        public TimeSpan timeDif;
+        private int isLoad = 0;
 
         public Match() { 
-            this._lastLeaderScore = 100; // TODO
+            this._lastLeaderScore = 100;
             this._field           = new Field();
             this._startTime       = DateTime.Now;
             this._gameStatus      = 0;
@@ -48,9 +50,34 @@ namespace myPongGame.Classes
             this._mapType = gameParams[1];
             this._score.setModifiers(this._mapType, gameParams[0]);
             this._field.setType(this._mapType);
+        } 
+        
+        // Load game
+        public Match(int[] gameParams, int lastLeaderScore, gameState gs) {
+            Size gameSize = new Size(770, 400);
+            switch (gameParams[2])
+            {
+                case 1:
+                    gameSize = new Size(1240, 640);
+                    break;
+                case 2:
+                    gameSize = new Size(1890, 960);
+                    break;
+            }
+
+            this._lastLeaderScore = lastLeaderScore;
+            this._field           = new Field(gameSize, gameParams[0], gs);
+            this._startTime       = DateTime.Now - gs.gameTime;
+            this._gameStatus      = 0;
+            this._score           = new Score();
+            this._mapType = gameParams[1];
+            this._score.setModifiers(this._mapType, gameParams[0]);
+            this._field.setType(this._mapType);
+
+            this.isLoad = 1;
         }
 
-        public void startMatch(Form1 formLink, int[] gameParams, LeaderBoard lBoard)
+        public void startMatch(mainForm formLink, int[] gameParams, LeaderBoard lBoard)
         {
 
             // Enable debug mode
@@ -153,7 +180,8 @@ namespace myPongGame.Classes
             {
                 TimeSpan timeDif = TimeSpan.Zero;
 
-                this._field.resetAll();
+                if (isLoad == 0)
+                    this._field.resetAll();
 
                 TimerCallback tm = new TimerCallback(calculateFrame);
                 timer = new System.Threading.Timer(tm, 0, 0, 16);
@@ -362,7 +390,7 @@ namespace myPongGame.Classes
 
                     if (playerScore > this._lastLeaderScore || dbStatus == 1)
                     {
-                        Form2 nameForm = new Form2();
+                        nameForm nameForm = new nameForm();
 
                         if (nameForm.ShowDialog() == DialogResult.OK)
                         {
@@ -399,7 +427,7 @@ namespace myPongGame.Classes
             int ballRad     = this._field._ball.getRadius();
 
             // Calc game time
-            TimeSpan timeDif = DateTime.Now - this._startTime;
+            timeDif = DateTime.Now - this._startTime;
 
             if (ballCoord.X - ballRad  <= 0)
             {

@@ -72,5 +72,12 @@ namespace myPongGame.Classes
             if (rnd.Next(0, 2) == 0)
                 this._speeds[1] *= -1;
         }
+
+        public Ball getBall()
+        {
+            Ball tempBall = new Ball(_defaultCoord, _radius, _speeds);
+            tempBall.setCoord(_coord);
+            return tempBall;
+        } 
     }
 }

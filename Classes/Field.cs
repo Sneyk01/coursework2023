@@ -62,6 +62,40 @@ namespace myPongGame.Classes
 
             this._graphic = new Graphic();
         }
+        // load game
+        public Field(Size mapSize, int botType, gameState gs)
+        {
+            this._size = new int[2];
+            this._size[0] = mapSize.Width;
+            this._size[1] = mapSize.Height;
+
+            this._type = 0;
+            this._ball = new Ball(new Point(this._size[0] / 2, this._size[1] / 2), gs.ballRadius, new double[2] { gs.ballSpeedX, gs.ballSpeedY });
+
+            int[] boardSize = new int[2] { Convert.ToInt32(this._size[0] / 38), this._size[1] / 10 };
+
+            this._boards    = new Board[2];
+            this._boards[0] = new Player(new Point(boardSize[0], (this._size[1] / 2) - boardSize[1] / 2), boardSize, boardSize[0] / 2, 0, gs.playerBoardAcc);
+            this._boards[1] = new Computer(new Point(this._size[0] - boardSize[0] - 1, (this._size[1] / 2) - boardSize[1] / 2), boardSize, boardSize[0] / 2, 0, gs.computerBoardAcc, botType);
+
+            this._graphic = new Graphic();
+
+            this._ball.setCoord(new Point(gs.ballCoordX, gs.ballCoordY));
+            this._boards[0].setCoord(new Point(gs.playerBoardX, gs.playerBoardY));
+            this._boards[1].setCoord(new Point(gs.computerBoardX, gs.computerBoardY));
+
+            for (int i = 0; i < gs.computerGoals; i++)
+            {
+                this._boards[1].win();
+                this._boards[0].lose();
+
+            }
+            for (int i = 0; i < gs.playerGoals; i++)
+            {
+                this._boards[0].win();
+
+            }
+        }
         public Field(PictureBox gameCanvas)
         {
             this._size    = new int[2];
