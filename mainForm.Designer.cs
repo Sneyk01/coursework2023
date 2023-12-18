@@ -32,6 +32,8 @@
             gameToolStripMenuItem = new ToolStripMenuItem();
             pauseToolStripMenuItem = new ToolStripMenuItem();
             stopToolStripMenuItem = new ToolStripMenuItem();
+            сохранитьToolStripMenuItem = new ToolStripMenuItem();
+            загрузитьToolStripMenuItem = new ToolStripMenuItem();
             settingToolStripMenuItem = new ToolStripMenuItem();
             рейтингToolStripMenuItem = new ToolStripMenuItem();
             справкаToolStripMenuItem = new ToolStripMenuItem();
@@ -59,7 +61,7 @@
             // 
             // gameToolStripMenuItem
             // 
-            gameToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pauseToolStripMenuItem, stopToolStripMenuItem });
+            gameToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pauseToolStripMenuItem, stopToolStripMenuItem, сохранитьToolStripMenuItem, загрузитьToolStripMenuItem });
             gameToolStripMenuItem.Name = "gameToolStripMenuItem";
             gameToolStripMenuItem.Size = new Size(57, 24);
             gameToolStripMenuItem.Text = "Игра";
@@ -67,14 +69,28 @@
             // pauseToolStripMenuItem
             // 
             pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            pauseToolStripMenuItem.Size = new Size(205, 26);
+            pauseToolStripMenuItem.Size = new Size(224, 26);
             pauseToolStripMenuItem.Text = "Пауза";
             // 
             // stopToolStripMenuItem
             // 
             stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            stopToolStripMenuItem.Size = new Size(205, 26);
+            stopToolStripMenuItem.Size = new Size(224, 26);
             stopToolStripMenuItem.Text = "В главное меню";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            сохранитьToolStripMenuItem.Size = new Size(224, 26);
+            сохранитьToolStripMenuItem.Text = "Сохранить";
+            сохранитьToolStripMenuItem.Click += сохранитьToolStripMenuItem_Click;
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            загрузитьToolStripMenuItem.Size = new Size(224, 26);
+            загрузитьToolStripMenuItem.Text = "Загрузить";
+            загрузитьToolStripMenuItem.Click += загрузитьToolStripMenuItem_Click;
             // 
             // settingToolStripMenuItem
             // 
@@ -170,7 +186,7 @@
             scoreButton.UseVisualStyleBackColor = true;
             scoreButton.Click += scoreButton_Click;
             // 
-            // Form1
+            // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -185,7 +201,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             MinimumSize = new Size(818, 497);
-            Name = "Form1";
+            Name = "mainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Понг";
             menuStrip1.ResumeLayout(false);
@@ -210,5 +226,7 @@
         private ToolStripMenuItem рейтингToolStripMenuItem;
         private SaveFileDialog saveFileDialog1;
         private ToolStripMenuItem сохранитьБазуДанныхToolStripMenuItem;
+        private ToolStripMenuItem сохранитьToolStripMenuItem;
+        private ToolStripMenuItem загрузитьToolStripMenuItem;
     }
 }

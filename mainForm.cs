@@ -1,6 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using myPongGame.Classes;
+using Newtonsoft.Json;
 
 namespace myPongGame
 {
@@ -106,6 +108,46 @@ namespace myPongGame
             // сохраняем текст в файл
             System.IO.File.WriteAllText(filename, game.showBestPlayers());
             MessageBox.Show("Файл сохранен");
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.mode == 1)
+            {
+                game.saveState();
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+            if (this.mode == 0)
+            {
+
+
+                loadForm lf = new loadForm();
+                if (lf.ShowDialog() == DialogResult.OK)
+                {
+                    int index = lf.output;
+
+
+                    string json;
+
+                    using (StreamReader r = new StreamReader(@"C:\Users\Public\Documents\pong\save.json"))
+                    {
+                        json = r.ReadToEnd();
+                    }
+
+                    List<gameState> saveData = JsonConvert.DeserializeObject<List<gameState>>(json);
+
+
+                    game.startGame(saveData[index]);
+
+                    mode = 1;
+                }
+
+            }
         }
     }
 }
